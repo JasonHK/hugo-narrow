@@ -114,7 +114,7 @@ project:
   source: "原始碼"
   github: "GitHub"
   website: "網站"
-  tech_stack: "技術棧"
+  tech_stack: "技術組合"
   status: "狀態"
   status_completed: "已完成"
   status_in_progress: "進行中"
