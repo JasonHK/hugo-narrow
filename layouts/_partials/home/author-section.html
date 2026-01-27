@@ -12,13 +12,13 @@
           {{ if $author.avatar }}
             <img
               src="{{ $author.avatar }}"
-              alt="{{ $author.name | default site.Title }}"
+              alt="{{ or (T $author.name) $author.name | default site.Title }}"
               class="border-primary/20 h-24 w-24 rounded-full border-4 object-cover shadow-lg" />
           {{ else }}
             <!-- 默认头像：使用作者姓名首字母 -->
             <div
               class="bg-primary text-primary-foreground flex h-24 w-24 items-center justify-center rounded-full text-2xl font-bold shadow-lg">
-              {{ substr ($author.name | default site.Title) 0 1 | upper }}
+              {{ substr (or (T $author.name) $author.name | default site.Title) 0 1 | upper }}
             </div>
           {{ end }}
         </div>
@@ -26,18 +26,18 @@
         <!-- 作者信息 -->
         <div class="min-w-0 flex-1">
           <h1 class="text-foreground mb-2 text-3xl font-bold">
-            {{ $author.name | default site.Title }}
+            {{ or (T $author.name) $author.name | default site.Title }}
           </h1>
 
           {{ if $author.title }}
             <p class="text-muted-foreground mb-3 text-lg">
-              {{ $author.title }}
+              {{ or (T $author.title) $author.title }}
             </p>
           {{ end }}
 
           {{ if $author.description }}
             <p class="text-foreground mb-4 leading-relaxed">
-              {{ $author.description }}
+              {{ or (T $author.description) $author.description }}
             </p>
           {{ end }}
 
@@ -51,11 +51,11 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   class="bg-muted text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 inline-flex items-center gap-2 rounded-lg px-3 py-2 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:scale-105 focus:ring-2 focus:outline-none"
-                  title="{{ .name }}">
+                  title="{{ or (T .name) .name }}">
                   {{ if .icon }}
                     {{ partial "features/icon.html" (dict "name" .icon "size" "sm" "ariaLabel" .name) }}
                   {{ end }}
-                  <span class="text-sm font-medium">{{ .name }}</span>
+                  <span class="text-sm font-medium">{{ or (T .name) .name }}</span>
                 </a>
               {{ end }}
             </div>
